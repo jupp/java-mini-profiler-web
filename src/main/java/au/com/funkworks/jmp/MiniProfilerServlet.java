@@ -115,7 +115,8 @@ public class MiniProfilerServlet extends HttpServlet {
 
 		resourceLoader = new MiniProfilerResourceLoader();
 		resourceReplacements.put("@@prefix@@", htmlIdPrefix);
-		resourceReplacements.put("@@baseURL@@", servletURL);
+		resourceReplacements.put("@@baseURL@@",  config.getServletContext().getContextPath() + servletURL);
+
 		resourceReplacements.put("@@prefix@@", htmlIdPrefix);
 		logger.debug("Init'ed mini-profiler servlet");
 	}

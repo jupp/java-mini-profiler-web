@@ -106,6 +106,11 @@ public class MiniProfilerFilter implements Filter {
 	 */
 	private String servletURL = "/java_mini_profile/";
 
+    /**
+     * Context path of the web application
+     */
+    private String contextPath = "";
+
 	/**
 	 * The number of seconds that profiling data will stick around for in
 	 * memcache.
@@ -146,6 +151,9 @@ public class MiniProfilerFilter implements Filter {
 			servletURL = configServletURL;
 			logger.debug("Servlet url configured: {}", servletURL);
 		}
+        contextPath = config.getServletContext().getContextPath();
+        servletURL = contextPath + servletURL;
+
 		String configRestrictToAdmins = config.getInitParameter(RESTRICT_TO_ADMINS_KEY);
 		if (StringUtils.hasLength(configRestrictToAdmins) && Boolean.parseBoolean(configRestrictToAdmins)) {
 			restricted = true;
@@ -202,7 +210,7 @@ public class MiniProfilerFilter implements Filter {
 				throw new ServletException(e);
 			}			
 		}
-	
+
 		counter = new AtomicLong(1);
 		resourceLoader = new MiniProfilerResourceLoader();
 		resourceReplacements.put("@@baseURL@@", servletURL);
@@ -280,7 +288,7 @@ public class MiniProfilerFilter implements Filter {
 					result = contentsStart + contentsEnd;					
 				}
 				
-				
+
 			}
 		}
 		if (StringUtils.hasLength(result)) {
