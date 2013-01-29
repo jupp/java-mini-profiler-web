@@ -18,12 +18,12 @@ public class NativeEhCacheCacheImpl implements CacheProfilerService {
 		CacheManager manager = CacheManager.create();  		  
 		//Create a Cache specifying its configuration.  
 		cache = new Cache(  
-		     new CacheConfiguration("profilerCache", 5000)  
-		       .memoryStoreEvictionPolicy(MemoryStoreEvictionPolicy.LRU)  
-		       .overflowToDisk(true)  
+		     new CacheConfiguration("profilerCache", 5000)
+		       .memoryStoreEvictionPolicy(MemoryStoreEvictionPolicy.LRU)
+		       .overflowToDisk(true)
 		       .eternal(false)  
-		       .timeToLiveSeconds(60)  
-		       .timeToIdleSeconds(30)  
+		       .timeToLiveSeconds(60)
+		       .timeToIdleSeconds(30)
 		       .diskPersistent(false)  
 		       .diskExpiryThreadIntervalSeconds(0));  
 		manager.addCache(cache);  

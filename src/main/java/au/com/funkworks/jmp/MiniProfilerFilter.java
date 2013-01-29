@@ -38,6 +38,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.ehcache.CacheManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -220,9 +221,7 @@ public class MiniProfilerFilter implements Filter {
 	}
 
 	
-	public void destroy() {
-		// Nothing to destroy
-	}
+	public void destroy() {}
 
 	/**
 	 * If profiling is supposed to occur for the current request, profile the

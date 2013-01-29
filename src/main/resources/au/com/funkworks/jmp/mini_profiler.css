@@ -43,8 +43,9 @@
 #@@prefix@@ .redirect a, #@@prefix@@ .normal a, #@@prefix@@ .ajax a { display: block; padding: 10px 10px 10px 24px; text-decoration: none; font-weight: bold; text-align: right; }
 #@@prefix@@ .ajax a { background: url(data:image/gif;base64,R0lGODlhEAAQAIABAAAAAP///yH5BAEKAAEALAAAAAAQABAAAAImjI+ZoG3A3IE0ULhsRPvZ1n3KtYUTNkmhqWYex5ULRqKOLaX5HhQAOw==) no-repeat 5px; }
 #@@prefix@@ .redirect a { background: url(data:image/gif;base64,R0lGODlhEAAQAIABAAAAAP///yH5BAEKAAEALAAAAQAQAA8AAAIejI+pwHywEnQILmqsbPXyp4SZGGokeErp1mDrC6cFADs=) no-repeat 5px; }
+#@@prefix@@ .toggle { text-align: center; cursor: pointer; margin: 5px; }
 
-#@@prefix@@-req { 
+#@@prefix@@-req {
   margin: 0; padding: 0; background: #FFFFFF; color: #111111;
   z-index: 10000; position: absolute; top: 0; left: 135px; width: 640px;
   font-family: Helvetica, Arial, sans-serif; font-size: 12px; line-height: 1em; text-align: left;

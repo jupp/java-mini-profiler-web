@@ -7,7 +7,11 @@ var MiniProfiler = ( function() {
   function init( options ) {
     baseURL = options.baseURL;
 
-    $( document.body ).append( '<div id="@@prefix@@" style="display: none;"></div><div id="@@prefix@@-req" style="display: none;"></div>' );
+    $( document.body ).append( '<div id="@@prefix@@" style="display: none;"><div class="toggle">Hide<hr></div><div class="requests"></div></div><div id="@@prefix@@-req" style="display: none;"></div>' );
+    if (document.cookie.indexOf("@@prefix@@-show=false") != -1) {
+        $("#@@prefix@@ .requests").hide();
+        $("#@@prefix@@ .toggle").html("Show");
+    }
 
     // Initialize the HTML templates
     $.template( 'requestTemplate', $( '#@@prefix@@-request-tmpl' ).html() );
@@ -31,6 +35,26 @@ var MiniProfiler = ( function() {
 
     // Display profile details when one of the request times is clicked on
     $( '#@@prefix@@' ).delegate( 'a', 'click', displayProfileDetails );
+
+    // Hide/show mini profiler when click on button
+    $( '#@@prefix@@' ).delegate( '.toggle', 'click', toggleMiniProfilerDisplay);
+  }
+
+    /**
+     * Hide/show mini profiler div
+     * @param e
+     */
+  function toggleMiniProfilerDisplay( e ) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).next( 'div' ).slideToggle();
+        if ($(this).html() == "Hide<hr>") {
+            document.cookie = "@@prefix@@-show=false";
+            $(this).html("Show");
+        } else {
+            document.cookie = "@@prefix@@-show=true";
+            $(this).html("Hide<hr>");
+        }
   }
 
   /**
@@ -67,7 +91,7 @@ var MiniProfiler = ( function() {
             // Store the request data for later
             requestData[ '@@prefix@@-req-' + request.id ] = request;
             // Add the request to the display
-            $( '#@@prefix@@' ).show().append( $.tmpl( 'requestTemplate', {
+            $( '#@@prefix@@' ).show().find(".requests").append( $.tmpl( 'requestTemplate', {
               type : request.redirect ? 'redirect' : type, requestId : request.id, totalTime : ( request.profile.duration / 1000000 ).toFixed( 2 )
             } ) );
           }

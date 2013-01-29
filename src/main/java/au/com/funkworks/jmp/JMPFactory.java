@@ -49,7 +49,7 @@ public class JMPFactory {
 	private static void setupCacheProfilerService(String cacheService, String cacheSpringService, ServletContext servletContext) throws Exception {
 		if (StringUtils.hasLength(cacheService)) {
 			Class<?> cls = Class.forName(cacheService);
-			cacheProfilerService = (CacheProfilerService)cls.newInstance();						
+			cacheProfilerService = (CacheProfilerService)cls.newInstance();
 		} else if (StringUtils.hasLength(cacheSpringService)) {
 			cacheProfilerService  = (CacheProfilerService)WebApplicationContextUtils.getWebApplicationContext(servletContext).getBean(cacheSpringService);
 		} else {
